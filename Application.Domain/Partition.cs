@@ -5,8 +5,10 @@ using System.Text;
 
 namespace Application.Domain
 {
+   
     public class Partition
     {
         public int Size { get; set; }
-    }
+    
+public  IList<IList<Share>> PartitioningResult { get; set; }}
 }

@@ -18,7 +18,20 @@ namespace Application.Domain
         public Partition Partition(List<Share> sharesList)
         {
 //            throw new NotImplementedException();
-            return new Partition() { Size = sharesList.Count};
+
+
+            IList<IList<Share>> partitioningResult = new List<IList<Share>>();
+            int total = 0;
+            while(total < sharesList.Count)
+            {
+                List<Share> subGroup = sharesList.Skip(total).Take(_partitionSize).ToList();
+                partitioningResult.Add(subGroup);
+                total += _partitionSize;
+            }
+
+
+
+            return new Partition() { PartitioningResult = partitioningResult, Size = sharesList.Count};
         }
     }
 }
